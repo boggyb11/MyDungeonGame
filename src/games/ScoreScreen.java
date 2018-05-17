@@ -13,10 +13,12 @@ public class ScoreScreen {
 	public void setScoreScreen(){
 		playAgain = new Button("Play Again");
 		playAgain.setOnAction(e ->{
-    		Frame f = new Frame();
+    		//Frame f = new Frame();
+    		CharacterCreator cc = new CharacterCreator();
     		DungeonFrame.hasEnemy=false;
     		DungeonFrame.monstersKilled=0;
-    		f.setStart();
+    		//f.setStart();
+    		cc.characterSelect();
 		});
 		
 		

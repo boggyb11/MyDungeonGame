@@ -2,13 +2,16 @@ package games;
 
 import java.util.Random;
 
+import javafx.scene.image.Image;
+
 
 public abstract class Enemy {
+
 	 private double EnemyHP;
 	 private double EnemyDMG;
 	 private String enemyName;
 	 private double armour;
-	 
+	 private Image enemyImage;
 	 
 	 
 	 
@@ -19,6 +22,11 @@ public abstract class Enemy {
 	}
 	public void make() {
 	}
+	
+	
+	
+	
+	
 		public double getArmour() {return armour;}
 		public void setArmour(double armour) {this.armour = armour;}
 		public double getHP() {return EnemyHP;}
@@ -38,5 +46,11 @@ public abstract class Enemy {
 		else {dropItem = LootTable.itemPack_01[i];}
 		return dropItem;
 	}
+		public Image getEnemyImage() {
+			return enemyImage;
+		}
+		public void setEnemyImage(Image enemyImage) {
+			this.enemyImage = enemyImage;
+		}
 }
 	

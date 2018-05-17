@@ -3,6 +3,7 @@ package monsters;
 import java.util.Random;
 
 import games.*;
+import javafx.scene.image.Image;
 
 public class Skeleton extends Enemy{
 
@@ -11,6 +12,7 @@ public class Skeleton extends Enemy{
 		super.setHP(40);
 		super.setEnemyName("Skeleton");
 		super.setArmour(1);
+		super.setEnemyImage(new Image("skeleton.png"));
 	}
 	
 	@Override

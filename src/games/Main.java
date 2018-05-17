@@ -13,11 +13,10 @@ public class Main {
 }
 
 /**
- * image of hero on continue screen
- * move cc stuff to specific hero
+ * add bio for heroes and monsters
+ * do special effects for monsters and spells
  * 
- * 
- * 
+ * ellis wants full screen
  * 
  */
 

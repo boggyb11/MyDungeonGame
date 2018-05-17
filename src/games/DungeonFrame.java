@@ -1,8 +1,6 @@
 package games;
 
 import java.text.DecimalFormat;
-import java.util.Random;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,13 +11,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import monsters.Gnoll;
-import monsters.Imp;
-import monsters.Skeleton;
 
 public class DungeonFrame {
 		static int monstersKilled=0;
 		static TextArea textArea = new TextArea();
+		static boolean hasEnemy = false;
 		Hero myHero = new Hero();
 		VBox vbox = new VBox(8);
 		HBox hbox = new HBox(3);
@@ -35,9 +31,8 @@ public class DungeonFrame {
 		boolean inDungeon = true;
 		Backpack playerBackpack = new Backpack();
 		DecimalFormat df2 = new DecimalFormat(".##");
-		final String[] simpleEnemy =new String [] {"Imp","Skeleton","Gnoll"};
-		static Enemy enemy;//= spawn();
-		static boolean hasEnemy = false;
+		static Enemy enemy;
+		EnemyPicker ep = new EnemyPicker();
 		
 		
 		HBox imageHbox = new HBox(2);
@@ -47,33 +42,14 @@ public class DungeonFrame {
 		
 		public void setDungeonFrame() {
 		if(hasEnemy==false) {
-				spawn();
+			enemy = ep.spawn();
 				enemyLabel = new Label("Enemy HP: "+df2.format(enemy.getHP()));
 		}
-		//this will do for now for hero image
-			Image heroImage =myHero.getPlayerImage();
-			ImageView iv1 = new ImageView();
-			iv1.setImage(heroImage);
-			iv1.setFitWidth(200);
-			iv1.setFitHeight(300);
-			iv1.setPreserveRatio(true);
-	        iv1.setSmooth(true);
+			//Images
+			Image heroImage =myHero.getPlayerImage();ImageView iv1 = new ImageView();iv1.setImage(heroImage);iv1.setFitWidth(200);iv1.setFitHeight(300);iv1.setPreserveRatio(true);iv1.setSmooth(true);
+	        ImageView iv2 = new ImageView();iv2.setImage(enemy.getEnemyImage());iv2.setFitWidth(200);iv2.setFitHeight(300);iv2.setPreserveRatio(true);iv2.setSmooth(true);
 	        
-	        ImageView iv2 = new ImageView();
-			iv2.setImage(enemyImage);
-			iv2.setFitWidth(200);
-			iv2.setFitHeight(300);
-			iv2.setPreserveRatio(true);
-	        iv2.setSmooth(true);
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-		
+	        //text area and labels
 		   textArea.appendText(options.battleOptions());
 		   hPLabel= new Label("HP : "+df2.format(myHero.getHP()));mPLabel= new Label("MP : "+myHero.getMP());
 		   enemyLabel = new Label("Enemy HP: "+df2.format(enemy.getHP()));
@@ -94,71 +70,15 @@ public class DungeonFrame {
 		   hbox.getChildren().addAll(hPLabel,mPLabel,spacer,enemyLabel);
 		   imageHbox.getChildren().addAll(iv1,spacer2,iv2);
 		   vbox.getChildren().addAll(hbox,imageHbox,textArea,attack,spell,run,backpack);
-			Frame.scene2 = new Scene(vbox,600,800);
-	    	Frame.window.setScene(Frame.scene2);
+		   Frame.scene2 = new Scene(vbox,600,800);
+		   Frame.window.setScene(Frame.scene2);
 	    	
 	   }
 		
-		
-		public String getEnemy() {
-			
-			Random rand = new Random();
-			int index = rand.nextInt(simpleEnemy.length);
-			return simpleEnemy[index];
-		}
-		public Enemy spawn() {
-			
-			switch(getEnemy()) {
-			case "Imp": {
-				 hasEnemy  = true;
-				 enemy = new Imp();
-				 enemyImage = new Image("imp.png");
-				 textArea.appendText("Imp has appeared!\n");
-				
-				 return new Imp();
-			}
-			case "Skeleton" :{
-				 hasEnemy  = true;
-				enemy = new Skeleton();
-				enemyImage = new Image("skeleton.png");
-				textArea.appendText("Skeleton has appeared!\n");
-				
-				return new Skeleton();
-			}
-			
-			case "Gnoll" :{
-				hasEnemy  = true;
-				enemy = new Gnoll();
-				enemyImage = new Image("gnoll.png");
-				textArea.appendText("Gnoll has appeared!\n");
-				 
-				return new Gnoll();
-			}
-			
-			default:{
-				return new Gnoll();
-			
-			}
-			}
-			
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		//do attack can be moved?
 		public void doAttack() {myHero.attack(myHero, enemy);}
 		public void outcome() {
 			
 			if(myHero.getHP()>0 && enemy.getHP()>0) {
-				//continue
 			}
 			//if monster's dead
 			 if(enemy.getHP()<=0) {
@@ -190,8 +110,6 @@ public class DungeonFrame {
 		}   
 		public TextArea getTextArea() {return textArea;}
 		public void setTextArea(String text) {textArea.setText(text);}
-		
-		//cast spell can be moved?
 		public void castSpell() {
 			if(myHero.getMP()>=(myHero.getHeroSpell().getManaCost())) {
 				myHero.castSpell(myHero, enemy);

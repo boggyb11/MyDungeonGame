@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 
@@ -17,6 +19,8 @@ public class ContinueFrame{
 	HBox hbox = new HBox(1);
 	Button continueButton;
 	Button endButton;
+	Pane spacer = new Pane();
+	
 	public void setContinueScreen(){
 		   
 			continueButton = new Button("Continue");
@@ -40,12 +44,19 @@ public class ContinueFrame{
 			iv1.setFitHeight(300);
 			iv1.setPreserveRatio(true);
 	        iv1.setSmooth(true);
+	        
+	        		ImageView iv2 = new ImageView();
+	     			iv2.setImage(DungeonFrame.enemy.getEnemyImage());
+	     			iv2.setFitWidth(200);
+	     			iv2.setFitHeight(300);
+	     			iv2.setPreserveRatio(true);
+	     	        iv2.setSmooth(true);
 			
 			
-			
-			continueLabel = new Label("Would you like to continue in the dungeon or end your run now ?");
-			hbox.getChildren().add(iv1);
-			vbox.getChildren().addAll(continueLabel,hbox,DungeonFrame.textArea,continueButton,endButton );
+	     	       HBox.setHgrow(spacer, Priority.ALWAYS);
+	     	       continueLabel = new Label("Would you like to continue in the dungeon or end your run now ?");
+	     	       hbox.getChildren().addAll(iv1,spacer,iv2);
+	     	       vbox.getChildren().addAll(continueLabel,hbox,DungeonFrame.textArea,continueButton,endButton );
 			
 			
 			Frame.scene3 = new Scene(vbox,600,800);

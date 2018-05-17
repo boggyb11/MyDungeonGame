@@ -4,6 +4,7 @@ package monsters;
 import java.util.Random;
 
 import games.*;
+import javafx.scene.image.Image;
 
 public class Imp extends Enemy {
 
@@ -13,6 +14,7 @@ public Imp() {
 	super.setHP(40);
 	super.setEnemyName("Imp");
 	super.setArmour(1);
+	super.setEnemyImage(new Image("imp.png"));
 }
 
 @Override

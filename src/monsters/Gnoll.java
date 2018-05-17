@@ -3,6 +3,7 @@ package monsters;
 import java.util.Random;
 
 import games.*;
+import javafx.scene.image.Image;
 
 public class Gnoll extends Enemy {
 
@@ -13,6 +14,7 @@ public class Gnoll extends Enemy {
 		super.setHP(40);
 		super.setEnemyName("Gnoll");
 		super.setArmour(1);
+		super.setEnemyImage(new Image("gnoll.png"));
 	}
 	
 	

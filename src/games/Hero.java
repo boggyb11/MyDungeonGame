@@ -18,16 +18,12 @@ public class Hero {
 		 
 	}
 
-/////////////////////METHODS//////////////////
 	public void attack(Hero hero, Enemy enemy) {
-		
-		//get the attack method of the enemy instead
 		calcHeroHp(enemy.attack(hero));
 		enemy.setHP(calcEnemyHP(enemy.getHP()));
 	}
 	public void calcHeroHp(double heroHP) {
 		HP = heroHP;
-		//HP-=(enemyDMG*(1-(armour/100)));
 		DecimalFormat df2 = new DecimalFormat(".##");
 		df2.format(HP);
 	}
