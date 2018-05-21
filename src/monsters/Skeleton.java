@@ -9,6 +9,7 @@ public class Skeleton extends Enemy{
 	public Skeleton() {
 		super.setDMG(6.0);
 		super.setHP(60);
+		super.setStartingHP(60);
 		super.setEnemyName("Skeleton");
 		super.setArmour(10);
 		super.setEnemyImage(new Image("skeleton.png"));

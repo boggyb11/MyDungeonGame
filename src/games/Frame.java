@@ -32,6 +32,7 @@ public class Frame extends Application {
 		setWindow(primaryStage);
 		getWindow().setTitle("Dungeon Crawler");
 		WelcomeScreen welcome = new WelcomeScreen();
+		
 		welcome.setWelcomeScreen();
 		primaryStage.setScene(getWelcomeScene());
 		primaryStage.show();

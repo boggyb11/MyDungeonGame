@@ -16,6 +16,7 @@ public class Mage extends Hero {
     	super.setActualHP(60);
     	super.setDMG(10);
     	super.setMP(200);
+    	super.setStartingMP(200);
     	super.setArmour(1);
     	super.setPlayerImage(new Image("magechar.png"));
 		Spell heroSpell = new Frostbolt();

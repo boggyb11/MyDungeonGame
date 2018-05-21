@@ -37,7 +37,7 @@ public class Backpack {
 		MenuItem cmItem1 = new MenuItem("Use Item");
         
 	@SuppressWarnings("unchecked")
-	public void displayBackpack() {
+	public void displayBackpack(DungeonFrame dungeonFrame) {
 			Frame.scene5 = new Scene(new Group(),600,800);
 			table.setPlaceholder(new Label("You have no items in your Backpack..!"));
 	        table.setItems(data);
@@ -47,7 +47,7 @@ public class Backpack {
 	        itemARMCol.setCellValueFactory(new PropertyValueFactory<LootTable, String>("Armour"));
 	        itemDMGCol.setCellValueFactory(new PropertyValueFactory<LootTable, String>("Damage"));
 			cm.getItems().add(cmItem1);
-	        setOnAction();
+	        setOnAction(dungeonFrame);
 	        
 		    table.getColumns().addAll(itemNameCol,itemHPCol,itemMPCol,itemARMCol,itemDMGCol);//adds a new column
 	        
@@ -68,7 +68,7 @@ public class Backpack {
 	
 	
 	
-	public void setOnAction() {
+	public void setOnAction(DungeonFrame dungeonFrame) {
 		backButton.setOnAction(e ->{
 			DungeonFrame hsb = new DungeonFrame();
 			hsb.setDungeonFrame();
@@ -79,7 +79,7 @@ public class Backpack {
 		    	LootTable item =table.getSelectionModel().getSelectedItem();
 		    	if(item != null) {
 		    		String usedItem = "You used "+ item +"!!\n";
-		    		DungeonFrame.textArea.appendText(usedItem);
+		    		dungeonFrame.textArea.appendText(usedItem);
 		        	item.use(item);
 		        	data.remove(item);
 		    	}

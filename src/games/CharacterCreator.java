@@ -72,7 +72,7 @@ public void characterSelect() {
 	hbox2.getChildren().addAll(warImage,spacer3,sorcImage,spacer4,archImage);
 	hbox.getChildren().addAll(getWarriorSelectButton(),spacer,getMageSelectButton(),spacer2,getArcherSelectButton());
 	hboxDescription.getChildren().addAll(warDescript,spacer5,sorcererDescript,spacer6,archerDescript);
-	vbox.getChildren().addAll(hbox2,hbox,hboxDescription,DungeonFrame.textArea,back);
+	vbox.getChildren().addAll(hbox2,hbox,hboxDescription,back);
 	
 	Frame.scene1 = new Scene(vbox, 600,800);
 	Frame.getWindow().setScene(Frame.scene1);

@@ -12,6 +12,7 @@ public Imp() {
 	
 	super.setDMG(8.0);
 	super.setHP(35);
+	super.setStartingHP(35);
 	super.setEnemyName("Imp");
 	super.setArmour(1);
 	super.setEnemyImage(new Image("imp.png"));

@@ -33,7 +33,7 @@ public class SpellBook {
     TableColumn<Spell, String> spellDescCol = new TableColumn<Spell, String>("Effects");
     
     @SuppressWarnings("unchecked")
-	public void displaySpellBook() {
+	public void displaySpellBook(DungeonFrame dungeonFrame) {
     	Frame.spellBookScene = new Scene(new Group(),600,800);
     	table.setPlaceholder(new Label("You Dont know any Spells!"));
         table.setItems(data);
@@ -50,7 +50,7 @@ public class SpellBook {
 		    	Spell item =table.getSelectionModel().getSelectedItem();
 		    	if(item != null) {
 		    		String selectedSpell = "You selected "+ item.spellName;
-		        	DungeonFrame.textArea.appendText(selectedSpell+" as default Spell \n");
+		    		dungeonFrame.textArea.appendText(selectedSpell+" as default Spell \n");
 		        	item.setSpell(item);
 		    	}
 		    }

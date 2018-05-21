@@ -13,6 +13,7 @@ public class Archer extends Hero {
 		super.setActualHP(80);
 		super.setDMG(20);
 		super.setMP(100);
+		super.setStartingMP(100);
 		super.setArmour(5);
 		super.setPlayerImage(new Image("archerchar.png"));
 		Spell heroSpell = new FireArrow();

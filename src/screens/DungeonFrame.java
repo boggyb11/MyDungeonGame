@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,7 +18,7 @@ import javafx.scene.layout.VBox;
 
 public class DungeonFrame {
 		public static int monstersKilled=0;
-		public static TextArea textArea = new TextArea();
+		public TextArea textArea = new TextArea();
 		public static boolean hasEnemy = false;
 		public static Enemy enemy;
 		public static boolean inDungeon = true;
@@ -30,8 +29,7 @@ public class DungeonFrame {
 		private final Button backpack = new Button("Backpack");
 		private final Button spellBook = new Button("SpellBook");
 		
-		final ProgressBar pb = new ProgressBar(0);
-	    final ProgressIndicator pi = new ProgressIndicator(0);
+		
 		
 		Hero myHero = new Hero();
 		VBox vbox = new VBox(8);
@@ -39,6 +37,7 @@ public class DungeonFrame {
 		HBox barBox = new HBox(3);
 		Pane spacer = new Pane();
 		Pane spacer2 = new Pane();
+		Pane spacer3 = new Pane();
 		Label hPLabel,mPLabel,enemyLabel;
 		HBox imageHbox = new HBox(2);
 		Image enemyImage;
@@ -46,7 +45,6 @@ public class DungeonFrame {
 		
 
 
-		Dungeon myDungeon;
 		Options options = new Options();
 		Backpack playerBackpack = new Backpack();
 		SpellBook playerSpellBook = new SpellBook();
@@ -54,6 +52,10 @@ public class DungeonFrame {
 		HeroImageCreator heroImage = new HeroImageCreator();
 		DecimalFormat df2 = new DecimalFormat(".##");
 		Outcome outcomeCalculator = new Outcome();
+		
+		ProgressBar heroHPBar;// = new ProgressBar(outcomeCalculator.calculateHeroHPBar(myHero));
+		ProgressBar enemyHPBar;// = new ProgressBar(outcomeCalculator.calculateEnemyHPBar(enemy));
+		ProgressBar heroMPBar;// = new ProgressBar(1);
 
 		
 		
@@ -61,31 +63,32 @@ public class DungeonFrame {
 			textArea.setEditable(false);
 			
 		if(hasEnemy==false) {
-			enemy = ep.spawn();
+			enemy = ep.spawn(this);
 				enemyLabel = new Label("Enemy HP: "+df2.format(enemy.getHP()));
 		}
 		
 			ImageView myHeroImage = heroImage.setHeroImage(myHero.getPlayerImage());
 			ImageView myEnemyImage = heroImage.setHeroImage(enemy.getEnemyImage());
 	        
-		   textArea.appendText(options.battleOptions());
-		   hPLabel= new Label("HP : "+df2.format(myHero.getCurrentHP()));mPLabel= new Label("MP : "+myHero.getMP());
-		   enemyLabel = new Label("Enemy HP: "+df2.format(enemy.getHP()));
-		  
-		   
-		   
-		   
-		  pb.setProgress(calculateHeroHPBar());
-		   
-		   
+			textArea.appendText(options.battleOptions());
+			hPLabel= new Label("HP : "+df2.format(myHero.getCurrentHP()));mPLabel= new Label("MP : "+myHero.getMP());
+			enemyLabel = new Label("Enemy HP: "+df2.format(enemy.getHP()));
+			
+			heroHPBar= new ProgressBar(outcomeCalculator.calculateHeroHPBar(myHero));
+			enemyHPBar = new ProgressBar(outcomeCalculator.calculateEnemyHPBar(enemy));
+			heroMPBar = new ProgressBar(outcomeCalculator.calculateHeroMPBar(myHero));
+			heroHPBar.setStyle("-fx-accent: green;");
+			heroMPBar.setStyle("-fx-accent: blue");
+			enemyHPBar.setStyle("-fx-accent: red;");
 		   
 		   setAttackButton();setSpellButton();setRunButton();setBackpackButton();setSpellBookButton();
 
 		   HBox.setHgrow(spacer, Priority.ALWAYS);
 		   HBox.setHgrow(spacer2, Priority.ALWAYS);
+		   HBox.setHgrow(spacer3, Priority.ALWAYS);
 		   
 		   labelBox.getChildren().addAll(hPLabel,mPLabel,spacer,enemyLabel);
-		   barBox.getChildren().add(pb);
+		   barBox.getChildren().addAll(heroHPBar,heroMPBar,spacer3,enemyHPBar);
 		   imageHbox.getChildren().addAll(myHeroImage,spacer2,myEnemyImage);
 		   vbox.getChildren().addAll(labelBox,barBox,imageHbox,textArea,attack,spell,run,backpack,spellBook);
 		   
@@ -94,75 +97,127 @@ public class DungeonFrame {
 	    	
 	   }
 		
-		public void doAttack() {myHero.attack(myHero, enemy);}
 		
 		public void setAttackButton() {
 			  attack.setOnAction((event)->{
-					doAttack();							
-					String outcomes =("\nYou received "+ df2.format(enemy.getDMG()*(1.0d-(myHero.getArmour()/100.0d)))+" Damage from the "+"Enemy"+"!!"+"\nYou Attack for "+ myHero.getDMG()+" Enemy has "+" : "+df2.format(enemy.getHP())+" HP remaining!!\n");
-					textArea.appendText(outcomes);
-					pb.setProgress(calculateHeroHPBar());
-					System.out.println(calculateHeroHPBar());
-					hPLabel.setText("HP: "+df2.format(myHero.getCurrentHP()));mPLabel.setText("MP : "+myHero.getMP());enemyLabel.setText("Enemy HP: "+enemy.getHP());
-					outcomeCalculator.outcome(myHero, enemy);});
-			
-			
+					myHero.attack(myHero, enemy);
+					
+					heroHPBar.setProgress(outcomeCalculator.calculateHeroHPBar(myHero));
+					enemyHPBar.setProgress(outcomeCalculator.calculateEnemyHPBar(enemy));
+					
+					outcomeCalculator.attackUpdate(textArea, myHero, enemy, hPLabel, mPLabel, enemyLabel);
+					outcomeCalculator.outcome(myHero, enemy,this);});
 		}
 		public void setSpellButton() {
 			
-			   spell.setOnAction((event)->{castSpell();outcomeCalculator.outcome(myHero, enemy);});
+			   spell.setOnAction((event)->{
+				   myHero.castSpell(this, textArea, myHero, enemy, enemyLabel, enemyLabel, enemyLabel, enemyHPBar, enemyHPBar);
+				   
+				   heroMPBar.setProgress(outcomeCalculator.calculateHeroMPBar(myHero));
+				   enemyHPBar.setProgress(outcomeCalculator.calculateEnemyHPBar(enemy));
+				   outcomeCalculator.spellUpdate(textArea, myHero, enemy, hPLabel, mPLabel, enemyLabel);
+				   outcomeCalculator.outcome(myHero, enemy,this);
+				   });
 
 		}
 		public void setRunButton() {
-			  run.setOnAction((event)->{ContinueFrame cf = new ContinueFrame();cf.setContinueScreen();});
+			  run.setOnAction((event)->{ContinueFrame cf = new ContinueFrame();cf.setContinueScreen(this);});
 			
 		}
 		public void setBackpackButton() {
 			
-			   backpack.setOnAction((event)->{playerBackpack.displayBackpack();});
+			   backpack.setOnAction((event)->{playerBackpack.displayBackpack(this);});
 
 			
 		}
 		public void setSpellBookButton() {
 			
-			spellBook.setOnAction((event)->{playerSpellBook.displaySpellBook();});
+			spellBook.setOnAction((event)->{playerSpellBook.displaySpellBook(this);});
 		}
-		public void setTextArea(String text) {textArea.setText(text);}
-		public TextArea getTextArea() {return textArea;}
+
+
 		
 		
-		public void castSpell() {
-			if(myHero.getMP()>=(myHero.getHeroSpell().getManaCost())) {
-				
-				myHero.castSpell(myHero, enemy);
-				textArea.appendText("\nYou cast : " + myHero.getHeroSpell().getSpellName()+" ["+ myHero.getHeroSpell().effect()+"]");
-				String outcomes =("\nEnemy has : "+ df2.format(enemy.getHP())+" HP remaining!!\n");
-				textArea.appendText(outcomes);
-				hPLabel.setText("HP: "+df2.format(myHero.getCurrentHP()));mPLabel.setText("MP : "+myHero.getMP());enemyLabel.setText("Enemy HP: "+enemy.getHP());
-				 
-			}
-			else {
-				textArea.appendText("\nYou do not have enough mana to cast that spell!!");
-			}
-			 hPLabel.setText("HP: "+myHero.getCurrentHP()); 
-			 mPLabel.setText("MP : "+myHero.getMP()); 
-		}
 	
 
+
+	
+	
+	
+	
+	
+	//////////// GETTERS AND SETTERS/////////////////
+	
+	public void setTextArea(String text) {
+		textArea.setText(text);
+	}
+	
 	public Enemy getEnemy() {
-		
-		
 		return enemy;
 	}
 	
-	public double calculateHeroHPBar() {
-		double startingHP = myHero.getActualHP();
-		double currentHP = myHero.getCurrentHP();
-		
-		double HPPercentage = currentHP/startingHP ;
-		
-		return HPPercentage;
+	public TextArea getTextArea() {
+		return textArea;
 	}
+	
+	public static int getMonstersKilled() {
+		return monstersKilled;
+	}
+
+	public static void setMonstersKilled(int monstersKilled) {
+		DungeonFrame.monstersKilled = monstersKilled;
+	}
+
+	public static boolean isHasEnemy() {
+		return hasEnemy;
+	}
+
+	public static void setHasEnemy(boolean hasEnemy) {
+		DungeonFrame.hasEnemy = hasEnemy;
+	}
+
+	public static boolean isInDungeon() {
+		return inDungeon;
+	}
+
+	public static void setInDungeon(boolean inDungeon) {
+		DungeonFrame.inDungeon = inDungeon;
+	}
+
+	public void setTextArea(TextArea textArea) {
+		this.textArea = textArea;
+	}
+
+	public static void setEnemy(Enemy enemy) {
+		DungeonFrame.enemy = enemy;
+	}
+
+	public Label gethPLabel() {
+		return hPLabel;
+	}
+
+	public void sethPLabel(Label hPLabel) {
+		this.hPLabel = hPLabel;
+	}
+
+	public Label getmPLabel() {
+		return mPLabel;
+	}
+
+	public void setmPLabel(Label mPLabel) {
+		this.mPLabel = mPLabel;
+	}
+
+
+	public HBox getBarBox() {
+		return barBox;
+	}
+
+
+	public void setBarBox(HBox barBox) {
+		this.barBox = barBox;
+	}
+
 
 
 	

@@ -15,7 +15,7 @@ public class ScoreScreen {
 	Label enemiesKilled;
 	VBox vbox = new VBox(8);
 	Button playAgain;
-	public void setScoreScreen(){
+	public void setScoreScreen(DungeonFrame dungeonFrame){
 		playAgain = new Button("Play Again");
 		playAgain.setOnAction(e ->{
 			

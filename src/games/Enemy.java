@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 public abstract class Enemy {
 
 	 private double EnemyHP;
+	 private double startingHP;
 	 private double EnemyDMG;
 	 private String enemyName;
 	 public double armour;
@@ -51,6 +52,12 @@ public abstract class Enemy {
 		}
 		public void setEnemyImage(Image enemyImage) {
 			this.enemyImage = enemyImage;
+		}
+		public double getStartingHP() {
+			return startingHP;
+		}
+		public void setStartingHP(double startingHP) {
+			this.startingHP = startingHP;
 		}
 }
 	

@@ -23,7 +23,7 @@ public class ContinueFrame{
 	Button endButton;
 	Pane spacer = new Pane();
 	
-	public void setContinueScreen(){
+	public void setContinueScreen(DungeonFrame dungeonFrame){
 		   
 			continueButton = new Button("Continue");
 			continueButton.setOnAction(e ->{
@@ -35,7 +35,7 @@ public class ContinueFrame{
 			endButton = new Button("End");
 			endButton.setOnAction(e ->{
 				ScoreScreen ss = new ScoreScreen();
-				ss.setScoreScreen();});
+				ss.setScoreScreen(dungeonFrame);});
 			
 			
 			
@@ -58,7 +58,7 @@ public class ContinueFrame{
 	     	       HBox.setHgrow(spacer, Priority.ALWAYS);
 	     	       continueLabel = new Label("Would you like to continue in the dungeon or end your run now ?");
 	     	       hbox.getChildren().addAll(iv1,spacer,iv2);
-	     	       vbox.getChildren().addAll(continueLabel,hbox,DungeonFrame.textArea,continueButton,endButton );
+	     	       vbox.getChildren().addAll(continueLabel,dungeonFrame.barBox,hbox,dungeonFrame.textArea,continueButton,endButton );
 			
 			
 			Frame.setScene3(new Scene(vbox,600,800));

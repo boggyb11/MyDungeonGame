@@ -3,6 +3,9 @@ package games;
 import java.text.DecimalFormat;
 
 import effects.LightBurn;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import screens.DungeonFrame;
 
@@ -10,8 +13,12 @@ public class Hero {
 	 static double currentHP;
 	 static double actualHP;
 	 public static double DMG;
-	 static int MP;
-	 static Spell heroSpell;
+	 static double MP;
+	 static double startingMP;
+	 
+
+
+	static Spell heroSpell;
 	 static Image playerImage;
 	 static double armour;
 	 DecimalFormat df2 = new DecimalFormat(".##");
@@ -65,7 +72,7 @@ public class Hero {
 		DMG = dMG;
 	}
 
-	public  int getMP() {
+	public  double getMP() {
 		return MP;
 	}
 
@@ -95,10 +102,31 @@ public class Hero {
 	public void setHeroSpell(Spell heroSpellIn) {
 		heroSpell = heroSpellIn;
 	}
+	 public double getStartingMP() {
+		return startingMP;
+	}
+
+
+	public  void setStartingMP(double startingMP) {
+		Hero.startingMP = startingMP;
+	}
 	
-	public void castSpell(Hero hero, Enemy enemy) {
-		MP -= heroSpell.getManaCost();
-		heroSpell.castSpell(enemy);
+	public void castSpell(DungeonFrame dungeonFrame,TextArea textArea, Hero myHero, Enemy enemy,Label hPLabel, Label mPLabel,Label enemyLabel,ProgressBar heroMPBar,ProgressBar enemyHPBar) {
+		if(myHero.getMP()>=(myHero.getHeroSpell().getManaCost())) {
+		Outcome outcomeCalculator = new Outcome();
+		
+			MP -= heroSpell.getManaCost();
+			heroSpell.castSpell(enemy);
+		   heroMPBar.setProgress(outcomeCalculator.calculateHeroMPBar(myHero));
+		   enemyHPBar.setProgress(outcomeCalculator.calculateEnemyHPBar(enemy));
+		   outcomeCalculator.spellUpdate(textArea, myHero, enemy, hPLabel, mPLabel, enemyLabel);
+		   outcomeCalculator.outcome(myHero, enemy,dungeonFrame);
+		
+		}
+		
+		else {
+			textArea.appendText("\nYou do not have enough mana to cast that spell!!");
+		}
 	}
 	
 	
