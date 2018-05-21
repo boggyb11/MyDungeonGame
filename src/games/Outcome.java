@@ -63,14 +63,21 @@ public class Outcome {
 		//if monster's dead
 		 if(enemy.getHP()<=0) {
 			 String killedMonster = ("\n"+enemy.getEnemyName() + " has been killed!\n");
-			dungeonFrame.textArea.appendText(killedMonster);
-			ContinueFrame cf = new ContinueFrame();
+			 DungeonFrame.textArea.appendText(killedMonster);
+			 ContinueFrame cf = new ContinueFrame();
 			 DungeonFrame.monstersKilled++;
 			 DungeonFrame.hasEnemy=false;
 			 LootTable lootDrop = enemy.getItem();
+			 
+			 //////////////////////////////////////////////
+			 double gainedExperience = enemy.getExperience();
+			 double exp = (myHero.getExperience() + gainedExperience);
+			 myHero.setExperience(exp);
+			 checkLevelUp(myHero,dungeonFrame);
+			 
 				if(lootDrop.getName() != "NULL")
 				{
-					dungeonFrame.textArea.appendText("\nYou received "+ lootDrop.getName() + "!!\n");
+					DungeonFrame.textArea.appendText("\nYou received "+ lootDrop.getName() + "!!\n");
 					playerBackpack.addItem(lootDrop);
 				}
 				
@@ -81,12 +88,25 @@ public class Outcome {
 				DungeonFrame.inDungeon = false;
 				playerBackpack.emptyBackpack();
 				playerSpellBook.emptySpellBook();
-				dungeonFrame.textArea.setText("");
+				DungeonFrame.textArea.setText("");
 				
 				
 				ScoreScreen ss = new ScoreScreen();
 				ss.setScoreScreen(dungeonFrame);
 			}
 
-	}   
+	}  
+	public void checkLevelUp(Hero myHero, DungeonFrame dungeonFrame) {
+		if(myHero.getExperience()>=myHero.getExpToLevel()) {
+			myHero.setLevel(myHero.getLevel()+1);
+			myHero.levelUp();
+			DungeonFrame.textArea.appendText("\n------------------------------");
+			DungeonFrame.textArea.appendText("\nYou have gained a level !!!!!!");
+			DungeonFrame.textArea.appendText("\n------------------------------");
+			
+			
+		}
+		
+		
+	}
 }

@@ -22,13 +22,13 @@ public String getEnemy() {
 		case "Imp": {
 			DungeonFrame.hasEnemy=true;
 			 DungeonFrame.enemy = new Imp();
-			 dungeonFrame.textArea.appendText("Imp has appeared!\n");	
+			 DungeonFrame.textArea.appendText("Imp has appeared!\n");	
 			 return new Imp();
 		}
 		case "Skeleton" :{
 			DungeonFrame.hasEnemy=true;
 			DungeonFrame.enemy = new Skeleton();
-			dungeonFrame.textArea.appendText("Skeleton has appeared!\n");
+			DungeonFrame.textArea.appendText("Skeleton has appeared!\n");
 			
 			return new Skeleton();
 		}
@@ -36,7 +36,7 @@ public String getEnemy() {
 		case "Gnoll" :{
 			DungeonFrame.hasEnemy=true;
 			DungeonFrame.enemy = new Gnoll();
-			dungeonFrame.textArea.appendText("Gnoll has appeared!\n");
+			DungeonFrame.textArea.appendText("Gnoll has appeared!\n");
 			 
 			return new Gnoll();
 		}

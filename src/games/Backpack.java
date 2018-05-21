@@ -79,7 +79,7 @@ public class Backpack {
 		    	LootTable item =table.getSelectionModel().getSelectedItem();
 		    	if(item != null) {
 		    		String usedItem = "You used "+ item +"!!\n";
-		    		dungeonFrame.textArea.appendText(usedItem);
+		    		DungeonFrame.textArea.appendText(usedItem);
 		        	item.use(item);
 		        	data.remove(item);
 		    	}

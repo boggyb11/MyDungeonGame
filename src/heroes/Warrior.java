@@ -22,6 +22,12 @@ public class Warrior extends Hero {
 		addStartSpell.addItem(heroSpell);
 	}
 
+	@Override
+	public void levelUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 	

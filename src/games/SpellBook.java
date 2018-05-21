@@ -50,7 +50,7 @@ public class SpellBook {
 		    	Spell item =table.getSelectionModel().getSelectedItem();
 		    	if(item != null) {
 		    		String selectedSpell = "You selected "+ item.spellName;
-		    		dungeonFrame.textArea.appendText(selectedSpell+" as default Spell \n");
+		    		DungeonFrame.textArea.appendText(selectedSpell+" as default Spell \n");
 		        	item.setSpell(item);
 		    	}
 		    }

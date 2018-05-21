@@ -18,6 +18,7 @@ public class Frame extends Application {
 	static Scene scene5;
 	private static Scene welcomeScene;
 	static Scene spellBookScene;
+
 	CharacterCreator cc = new CharacterCreator();
 	HBox hbox = new HBox(3);
 	HBox hbox2 = new HBox(3);
@@ -68,8 +69,7 @@ public class Frame extends Application {
 	public static void setWelcomeScene(Scene welcomeScene) {
 		Frame.welcomeScene = welcomeScene;
 	}
-	
-	
+
 	
 
 

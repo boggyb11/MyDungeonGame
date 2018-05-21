@@ -16,6 +16,7 @@ public class Gnoll extends Enemy {
 		super.setEnemyName("Gnoll");
 		super.setArmour(5);
 		super.setEnemyImage(new Image("gnoll.png"));
+		super.setExperience(25);
 	}
 	
 	

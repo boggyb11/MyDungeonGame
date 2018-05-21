@@ -1,7 +1,6 @@
 package screens;
 
-import games.Frame;
-import games.Hero;
+import games.*;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,7 +14,7 @@ import javafx.scene.layout.VBox;
 
 public class ContinueFrame{
 	
-	Hero myHero = new Hero();
+	//Hero myHero = new Hero();
 	Label continueLabel;
 	VBox vbox = new VBox(8);
 	HBox hbox = new HBox(1);
@@ -29,7 +28,6 @@ public class ContinueFrame{
 			continueButton.setOnAction(e ->{
 				DungeonFrame hsb = new DungeonFrame();
 				hsb.setDungeonFrame();
-			
 			});
 			
 			endButton = new Button("End");
@@ -39,7 +37,7 @@ public class ContinueFrame{
 			
 			
 			
-			Image heroImage =myHero.getPlayerImage();
+			Image heroImage =dungeonFrame.myHero.getPlayerImage();
 			ImageView iv1 = new ImageView();
 			iv1.setImage(heroImage);
 			iv1.setFitWidth(200);
@@ -58,7 +56,7 @@ public class ContinueFrame{
 	     	       HBox.setHgrow(spacer, Priority.ALWAYS);
 	     	       continueLabel = new Label("Would you like to continue in the dungeon or end your run now ?");
 	     	       hbox.getChildren().addAll(iv1,spacer,iv2);
-	     	       vbox.getChildren().addAll(continueLabel,dungeonFrame.barBox,hbox,dungeonFrame.textArea,continueButton,endButton );
+	     	       vbox.getChildren().addAll(continueLabel,dungeonFrame.barBox,hbox,DungeonFrame.textArea,continueButton,endButton );
 			
 			
 			Frame.setScene3(new Scene(vbox,600,800));

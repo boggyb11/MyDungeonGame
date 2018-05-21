@@ -26,4 +26,10 @@ public class Mage extends Hero {
 		addStartSpell.addItem(secondSpell);
 	}
 
+	@Override
+	public void levelUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

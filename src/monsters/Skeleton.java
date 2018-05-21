@@ -13,6 +13,7 @@ public class Skeleton extends Enemy{
 		super.setEnemyName("Skeleton");
 		super.setArmour(10);
 		super.setEnemyImage(new Image("skeleton.png"));
+		super.setExperience(25);
 	}
 	
 	@Override

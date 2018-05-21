@@ -14,7 +14,7 @@ public abstract class Enemy {
 	 public double armour;
 	 private Image enemyImage;
 	 public boolean isBurning = false;
-	 
+	 private double experience;
 	 
 
 
@@ -58,6 +58,12 @@ public abstract class Enemy {
 		}
 		public void setStartingHP(double startingHP) {
 			this.startingHP = startingHP;
+		}
+		public double getExperience() {
+			return experience;
+		}
+		public void setExperience(double experience) {
+			this.experience = experience;
 		}
 }
 	

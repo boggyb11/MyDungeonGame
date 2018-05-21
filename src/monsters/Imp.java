@@ -16,6 +16,7 @@ public Imp() {
 	super.setEnemyName("Imp");
 	super.setArmour(1);
 	super.setEnemyImage(new Image("imp.png"));
+	super.setExperience(25);
 }
 
 @Override

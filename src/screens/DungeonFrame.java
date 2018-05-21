@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 
 public class DungeonFrame {
 		public static int monstersKilled=0;
-		public TextArea textArea = new TextArea();
+		public static TextArea textArea = new TextArea();
 		public static boolean hasEnemy = false;
 		public static Enemy enemy;
 		public static boolean inDungeon = true;
@@ -28,10 +28,11 @@ public class DungeonFrame {
 		private final Button run = new Button("Run");
 		private final Button backpack = new Button("Backpack");
 		private final Button spellBook = new Button("SpellBook");
+		private final Button heroStats = new Button("Hero Stats");
 		
 		
-		
-		Hero myHero = new Hero();
+		CharacterCreator cc = new CharacterCreator();
+		Hero myHero = cc.getMyHero();
 		VBox vbox = new VBox(8);
 		HBox labelBox = new HBox(3);
 		HBox barBox = new HBox(3);
@@ -81,7 +82,7 @@ public class DungeonFrame {
 			heroMPBar.setStyle("-fx-accent: blue");
 			enemyHPBar.setStyle("-fx-accent: red;");
 		   
-		   setAttackButton();setSpellButton();setRunButton();setBackpackButton();setSpellBookButton();
+		   setAttackButton();setSpellButton();setRunButton();setBackpackButton();setSpellBookButton();setHeroStatsButton();
 
 		   HBox.setHgrow(spacer, Priority.ALWAYS);
 		   HBox.setHgrow(spacer2, Priority.ALWAYS);
@@ -90,7 +91,7 @@ public class DungeonFrame {
 		   labelBox.getChildren().addAll(hPLabel,mPLabel,spacer,enemyLabel);
 		   barBox.getChildren().addAll(heroHPBar,heroMPBar,spacer3,enemyHPBar);
 		   imageHbox.getChildren().addAll(myHeroImage,spacer2,myEnemyImage);
-		   vbox.getChildren().addAll(labelBox,barBox,imageHbox,textArea,attack,spell,run,backpack,spellBook);
+		   vbox.getChildren().addAll(labelBox,barBox,imageHbox,textArea,attack,spell,run,backpack,spellBook,heroStats);
 		   
 		   Frame.setScene2(new Scene(vbox,600,800));
 		   Frame.getWindow().setScene(Frame.getScene2());
@@ -136,7 +137,10 @@ public class DungeonFrame {
 		}
 
 
-		
+		public void setHeroStatsButton() {
+			CharacterStatsScreen statsScreen = new CharacterStatsScreen();
+			heroStats.setOnAction((event)->{statsScreen.showStatsScreen(myHero);});
+		}
 		
 	
 
@@ -185,7 +189,7 @@ public class DungeonFrame {
 	}
 
 	public void setTextArea(TextArea textArea) {
-		this.textArea = textArea;
+		DungeonFrame.textArea = textArea;
 	}
 
 	public static void setEnemy(Enemy enemy) {
@@ -216,6 +220,11 @@ public class DungeonFrame {
 
 	public void setBarBox(HBox barBox) {
 		this.barBox = barBox;
+	}
+
+
+	public Button getHeroStats() {
+		return heroStats;
 	}
 
 

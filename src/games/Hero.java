@@ -9,14 +9,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import screens.DungeonFrame;
 
-public class Hero {
+public abstract class Hero {
 	 static double currentHP;
 	 static double actualHP;
 	 public static double DMG;
 	 static double MP;
 	 static double startingMP;
-	 
-
+	 private static double experience=0;
+	 private static double expToLevel=100;
+	 private static int level =1;
 
 	static Spell heroSpell;
 	 static Image playerImage;
@@ -28,7 +29,8 @@ public class Hero {
 		 
 	}
 	
-
+	public abstract void levelUp();
+	
 	public void attack(Hero hero, Enemy enemy) {
 		calcHeroHp(enemy.attack(hero));
 		if(enemy.isBurning) {
@@ -76,8 +78,8 @@ public class Hero {
 		return MP;
 	}
 
-	public  void setMP(int mP) {
-		MP = mP;
+	public  void setMP(double d) {
+		MP = d;
 	}
 
 	public Spell getHeroSpell() {
@@ -127,6 +129,36 @@ public class Hero {
 		else {
 			textArea.appendText("\nYou do not have enough mana to cast that spell!!");
 		}
+	}
+
+
+	public double getExperience() {
+		return experience;
+	}
+
+
+	public void setExperience(double experience) {
+		Hero.experience = experience;
+	}
+
+
+	public double getExpToLevel() {
+		return expToLevel;
+	}
+
+
+	public void setExpToLevel(double expToLevel) {
+		Hero.expToLevel = expToLevel;
+	}
+
+
+	public int getLevel() {
+		return level;
+	}
+
+
+	public void setLevel(int level) {
+		Hero.level = level;
 	}
 	
 	

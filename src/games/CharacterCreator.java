@@ -29,7 +29,7 @@ public class CharacterCreator {
 	private String sorcererDescription = "A Spellcaster specialized in Magic with good damage but low HP";
 	private String archerDescription = "A well rounded fighter good with bows";
 
-	Hero myHero;
+	private static Hero myHero;
 	HBox hbox = new HBox(3);
 	HBox hbox2 = new HBox(3);
 	HBox hboxDescription = new HBox(3);
@@ -43,6 +43,7 @@ public class CharacterCreator {
 
 	HeroDescription heroDescription = new HeroDescription();
 	HeroImageCreator heroImage = new HeroImageCreator();
+	
 	
 public void characterSelect() {
 	
@@ -91,7 +92,7 @@ public void characterSelect() {
 	public void WarriorSelectButtonSet() {
 		WarriorSelectButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		    	myHero = new Warrior();
+		    	setMyHero(new Warrior());
 		    	DungeonFrame df = new DungeonFrame();
 				df.setDungeonFrame();
 		    }
@@ -102,7 +103,7 @@ public void characterSelect() {
 	public void MageSelectButtonSet() {
 		MageSelectButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		    	myHero = new Mage();
+		    	setMyHero(new Mage());
 		    	DungeonFrame df = new DungeonFrame();
 				df.setDungeonFrame();
 		    }
@@ -113,7 +114,7 @@ public void characterSelect() {
 	public void ArcherSelectButtonSet() {
 		ArcherSelectButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		    	myHero = new Archer();
+		    	setMyHero(new Archer());
 		    	DungeonFrame df = new DungeonFrame();
 				df.setDungeonFrame();
 		    }
@@ -136,4 +137,10 @@ public void characterSelect() {
 	public Button getWarriorSelectButton() {return WarriorSelectButton;}
 	public Button getMageSelectButton() {return MageSelectButton;}
 	public Button getArcherSelectButton() {return ArcherSelectButton;}
+	public Hero getMyHero() {
+		return myHero;
+	}
+	public void setMyHero(Hero myHero) {
+		CharacterCreator.myHero = myHero;
+	}
 }

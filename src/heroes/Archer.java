@@ -1,9 +1,8 @@
 package heroes;
 
-import games.Hero;
-import games.Spell;
+import games.*;
 import javafx.scene.image.Image;
-import spells.FireArrow;
+import spells.*;
 
 public class Archer extends Hero {
 
@@ -20,6 +19,54 @@ public class Archer extends Hero {
 		super.setHeroSpell(heroSpell);
 		addStartSpell.addItem(heroSpell);
 		
+		
+	}
+
+	@Override
+	public void levelUp() {
+
+		doStats();
+		doNewSpells();
+		
+		
+		
+	}
+	
+	public void doNewSpells() {
+		switch(super.getLevel()){
+		case 2:{
+			Spell newSpell = new PowerShot();
+			addStartSpell.addItem(newSpell);
+		}
+		case 4:{
+			
+		}
+		case 6:{
+			
+		}
+		case 8:{
+			
+		}
+		case 10:{
+			
+		}
+			
+			
+		}
+		
+	}
+	
+	public void doStats() {
+		
+		super.setActualHP(super.getActualHP()*1.4);
+		super.setCurrentHP(super.getActualHP());
+		
+		super.setDMG(super.getDMG()*1.4);
+		
+		super.setStartingMP(super.getStartingMP()*1.4);
+		super.setMP(super.getStartingMP());
+		
+		super.setArmour(super.getArmour()*1.4);
 		
 	}
 	
