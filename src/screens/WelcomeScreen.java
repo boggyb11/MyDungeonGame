@@ -1,5 +1,7 @@
-package games;
+package screens;
 
+import games.CharacterCreator;
+import games.Frame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -22,8 +24,8 @@ public class WelcomeScreen {
 	private final Button highScores = new Button("High Scores");
 	private final Button options = new Button("Options");
 	private final Label title= new Label("Dungeon Run");
-	BackgroundImage myBI= new BackgroundImage(new Image("welcomeImage.png",600,800,false,true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-	Background BG = new Background(myBI);
+	private final BackgroundImage myBI= new BackgroundImage(new Image("welcomeImage.png",600,800,false,true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+	private final Background BG = new Background(myBI);
 	VBox vbox = new VBox(20);
 	
 	public void setWelcomeScreen() {
@@ -44,8 +46,8 @@ public class WelcomeScreen {
 		vbox.setAlignment(Pos.CENTER);		
 		vbox.setBackground(BG);
 		vbox.getChildren().addAll(title,play,highScores,options);
-		Frame.welcomeScene = new Scene(vbox, 600,800);
-		   Frame.window.setScene(Frame.welcomeScene);
+		Frame.setWelcomeScene(new Scene(vbox, 600,800));
+		   Frame.getWindow().setScene(Frame.getWelcomeScene());
 		   
 		   
 	}

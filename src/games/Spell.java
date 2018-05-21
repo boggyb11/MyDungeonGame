@@ -8,27 +8,26 @@ public abstract class Spell {
 	String spellName="Spell";
 	int spellDmg=0;
 	int manaCost=0;
-
-
+	String effect;// = effect();
 	
+
 	public Spell() {
 		
 	} 
-
+	public abstract void castSpell(Enemy enemy);
+	public abstract String effect();
+	public void setSpell(Spell spell) {
+		Hero.heroSpell=spell;
+	}
 	
 	
 	
-	
-	////////////methods
-//	public Spell getSpell(Spell spell) {
-//		
-//		for(Spell spells: spellList) {
-//			if(spell.getSpellName()== spells.getSpellName()) {
-//				return spells;
-//			}
-//		}
-//		return null;//potential ERROR here
-//	}
+	public String getEffect() {
+		return effect;
+	}
+	public void setEffect(String effect) {
+		this.effect = effect;
+	}
 	public void setSpellName(String spellName) {
 		this.spellName = spellName;
 	}

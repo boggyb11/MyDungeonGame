@@ -13,10 +13,16 @@ public class Main {
 }
 
 /**
- * add bio for heroes and monsters
- * do special effects for monsters and spells
- * 
  * ellis wants full screen
+ * high scores
+ * 
+
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * 
  */
 

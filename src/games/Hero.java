@@ -2,43 +2,61 @@ package games;
 
 import java.text.DecimalFormat;
 
+import effects.LightBurn;
 import javafx.scene.image.Image;
+import screens.DungeonFrame;
 
 public class Hero {
-	 static double HP;
-	 static double DMG;
+	 static double currentHP;
+	 static double actualHP;
+	 public static double DMG;
 	 static int MP;
 	 static Spell heroSpell;
 	 static Image playerImage;
 	 static double armour;
-
-
-
+	 DecimalFormat df2 = new DecimalFormat(".##");
+	 protected SpellBook addStartSpell = new SpellBook();
+	
 	public Hero() {
 		 
 	}
+	
 
 	public void attack(Hero hero, Enemy enemy) {
 		calcHeroHp(enemy.attack(hero));
+		if(enemy.isBurning) {
+			LightBurn lb = new LightBurn();
+			lb.burn(enemy);
+		}
 		enemy.setHP(calcEnemyHP(enemy.getHP()));
 	}
 	public void calcHeroHp(double heroHP) {
-		HP = heroHP;
-		DecimalFormat df2 = new DecimalFormat(".##");
-		df2.format(HP);
+		currentHP = heroHP;
+		df2.format(currentHP);
 	}
 	public double calcEnemyHP(double enemyHP) {
 		
-		double EnemyHP = enemyHP;
-		EnemyHP -=DMG;
+		double EnemyHP = DungeonFrame.enemy.calcEnemyHp(enemyHP);
+		
+		df2.format(EnemyHP);
 		return EnemyHP;
 		
 	}
-	public double getHP() {
-		return HP;
+	public double getCurrentHP() {
+		return currentHP;
 	}
-	public void setHP(double hP) {
-		HP = hP;
+	public double getActualHP() {
+		return actualHP;
+	}
+
+
+	public void setActualHP(double actualHP) {
+		Hero.actualHP = actualHP;
+	}
+
+
+	public void setCurrentHP(double hP) {
+		currentHP = hP;
 	}
 	public double getDMG() {
 		return DMG;
@@ -77,9 +95,10 @@ public class Hero {
 	public void setHeroSpell(Spell heroSpellIn) {
 		heroSpell = heroSpellIn;
 	}
+	
 	public void castSpell(Hero hero, Enemy enemy) {
 		MP -= heroSpell.getManaCost();
-		enemy.setHP(enemy.getHP()-(heroSpell.getSpellDmg()));
+		heroSpell.castSpell(enemy);
 	}
 	
 	

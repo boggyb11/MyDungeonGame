@@ -10,9 +10,9 @@ public abstract class Enemy {
 	 private double EnemyHP;
 	 private double EnemyDMG;
 	 private String enemyName;
-	 private double armour;
+	 public double armour;
 	 private Image enemyImage;
-	 
+	 public boolean isBurning = false;
 	 
 	 
 
@@ -23,7 +23,7 @@ public abstract class Enemy {
 	public void make() {
 	}
 	
-	
+	public abstract double calcEnemyHp(double enemyHP);
 	
 	
 	

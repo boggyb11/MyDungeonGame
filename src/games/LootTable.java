@@ -1,5 +1,7 @@
 package games;
 
+import screens.DungeonFrame;
+
 public enum LootTable {
 //		  NAME,ARMOUR,DMG,HP,MP
 	NULL("NULL",0,0.0d,0,0),
@@ -21,6 +23,7 @@ public enum LootTable {
 	private double Damage;
 	private int HP;
 	private int MP;
+	DungeonFrame myDungeon = new DungeonFrame();
 	
 	private LootTable(String name, int Armour, double Damage,int HP, int MP)
 	{
@@ -71,21 +74,22 @@ public enum LootTable {
 	}
 	public void use(LootTable item) {
 		if(item.HP>0) {
-			Hero.HP+=item.HP;
-			DungeonFrame.textArea.appendText("HP healed by "+ item.HP+"\n");
+			Hero.currentHP+=item.HP;
+			Hero.actualHP+=item.HP;
+			myDungeon.getTextArea().appendText("HP healed by "+ item.HP+"\n");
 		}
 		if(item.MP>0) {
 			Hero.MP+=item.MP;
-			DungeonFrame.textArea.appendText("MP recovered by "+ item.MP+"\n");
+			myDungeon.getTextArea().appendText("MP recovered by "+ item.MP+"\n");
 		}
 		if(item.Damage>0) {
 			Hero.DMG+=item.Damage;
-			DungeonFrame.textArea.appendText("Damage increased by "+ item.Damage+"\n");
+			myDungeon.getTextArea().appendText("Damage increased by "+ item.Damage+"\n");
 		}
 		//armour
 		if(item.Armour>0) {
 			Hero.armour+=item.Armour;
-			DungeonFrame.textArea.appendText("Armour increased by "+ item.Armour+"\n");
+			myDungeon.getTextArea().appendText("Armour increased by "+ item.Armour+"\n");
 		}
 		
 	}

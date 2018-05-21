@@ -11,9 +11,9 @@ public class Gnoll extends Enemy {
 	
 	public Gnoll() {
 		super.setDMG(6.0);
-		super.setHP(40);
+		super.setHP(80);
 		super.setEnemyName("Gnoll");
-		super.setArmour(1);
+		super.setArmour(5);
 		super.setEnemyImage(new Image("gnoll.png"));
 	}
 	
@@ -22,14 +22,9 @@ public class Gnoll extends Enemy {
 	public double attack(Hero hero) {
 		Random rand = new Random();
 		int roll = rand.nextInt(10);
-		double hp = hero.getHP();
+		double hp = hero.getCurrentHP();
 		if(roll>=5) {
-			
-			
-			
-			hp -=2*(super.getDMG()*(1-(hero.getArmour()/100)));
-			//DecimalFormat df2 = new DecimalFormat(".##");
-			//double	HP = df2.format(hp);
+			hp-=super.getDMG();
 			return hp;
 		}
 
@@ -38,14 +33,17 @@ public class Gnoll extends Enemy {
 			return hp;
 		}
 	}
+
+
+	@Override
+	public double calcEnemyHp(double enemyHP) {
+
+		double EnemyHP = enemyHP;
+		EnemyHP -=(Hero.DMG*(1-(armour/100)));
+		return EnemyHP;
+		
+	}
 	
 
 }
-/*
-extra armour and hp 
 
-
-
-
-
-*/

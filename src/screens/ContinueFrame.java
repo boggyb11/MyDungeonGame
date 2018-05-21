@@ -1,5 +1,7 @@
-package games;
+package screens;
 
+import games.Frame;
+import games.Hero;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -59,8 +61,8 @@ public class ContinueFrame{
 	     	       vbox.getChildren().addAll(continueLabel,hbox,DungeonFrame.textArea,continueButton,endButton );
 			
 			
-			Frame.scene3 = new Scene(vbox,600,800);
-	    	Frame.window.setScene(Frame.scene3);	
+			Frame.setScene3(new Scene(vbox,600,800));
+	    	Frame.getWindow().setScene(Frame.getScene3());	
 	}
 	//test
 	
