@@ -18,9 +18,9 @@ import screens.DungeonFrame;
 import screens.WelcomeScreen;
 
 public class CharacterCreator {
-	private final Image warrior = new Image ("warrior.png");
-	private final Image sorcerer = new Image ("sorcerer.png");
-	private final Image archer = new Image ("archer.png");
+	private final Image warrior = new Image ("warPlaceholder.png");
+	private final Image sorcerer = new Image ("magePlaceholder.png");
+	private final Image archer = new Image ("archerPlaceholder.png");
 	private Button WarriorSelectButton = new Button("Warrior");
 	private Button MageSelectButton = new Button("Mage");
 	private Button ArcherSelectButton = new Button("Archer");
