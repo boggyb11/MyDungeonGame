@@ -3,7 +3,8 @@ package screens;
 import java.text.DecimalFormat;
 
 import games.*;
-
+import heroes.Hero;
+import heroes.HeroImageCreator;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -35,10 +36,17 @@ public class DungeonFrame {
 		Hero myHero = cc.getMyHero();
 		VBox vbox = new VBox(8);
 		HBox labelBox = new HBox(3);
+		HBox actionBox1 = new HBox(1);
+		HBox actionBox2 = new HBox(1);
 		HBox barBox = new HBox(3);
 		Pane spacer = new Pane();
 		Pane spacer2 = new Pane();
 		Pane spacer3 = new Pane();
+		Pane actionBox1SpacerL = new Pane();
+		Pane actionBox1SpacerR = new Pane();
+		Pane actionBox2SpacerL = new Pane();
+		Pane actionBox2SpacerR = new Pane();
+		
 		Label hPLabel,mPLabel,enemyLabel;
 		HBox imageHbox = new HBox(2);
 		Image enemyImage;
@@ -87,11 +95,19 @@ public class DungeonFrame {
 		   HBox.setHgrow(spacer, Priority.ALWAYS);
 		   HBox.setHgrow(spacer2, Priority.ALWAYS);
 		   HBox.setHgrow(spacer3, Priority.ALWAYS);
+		   HBox.setHgrow(actionBox1SpacerL, Priority.ALWAYS);
+		   HBox.setHgrow(actionBox1SpacerR, Priority.ALWAYS);
+		   HBox.setHgrow(actionBox2SpacerL, Priority.ALWAYS);
+		   HBox.setHgrow(actionBox2SpacerR, Priority.ALWAYS);
 		   
 		   labelBox.getChildren().addAll(hPLabel,mPLabel,spacer,enemyLabel);
 		   barBox.getChildren().addAll(heroHPBar,heroMPBar,spacer3,enemyHPBar);
 		   imageHbox.getChildren().addAll(myHeroImage,spacer2,myEnemyImage);
-		   vbox.getChildren().addAll(labelBox,barBox,imageHbox,textArea,attack,spell,run,backpack,spellBook,heroStats);
+		   actionBox1.getChildren().addAll(attack,actionBox1SpacerL,spell,actionBox1SpacerR,run);
+		   actionBox2.getChildren().addAll(backpack,actionBox2SpacerL,spellBook,actionBox2SpacerR,heroStats);
+		   
+		   
+		   vbox.getChildren().addAll(labelBox,barBox,imageHbox,textArea,actionBox1,actionBox2);
 		   
 		   Frame.setScene2(new Scene(vbox,600,800));
 		   Frame.getWindow().setScene(Frame.getScene2());
@@ -116,8 +132,6 @@ public class DungeonFrame {
 				   
 				   heroMPBar.setProgress(outcomeCalculator.calculateHeroMPBar(myHero));
 				   enemyHPBar.setProgress(outcomeCalculator.calculateEnemyHPBar(enemy));
-				   outcomeCalculator.spellUpdate(textArea, myHero, enemy, hPLabel, mPLabel, enemyLabel);
-				   outcomeCalculator.outcome(myHero, enemy,this);
 				   });
 
 		}

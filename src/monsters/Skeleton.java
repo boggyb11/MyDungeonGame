@@ -2,6 +2,7 @@ package monsters;
 
 
 import games.*;
+import heroes.Hero;
 import javafx.scene.image.Image;
 
 public class Skeleton extends Enemy{

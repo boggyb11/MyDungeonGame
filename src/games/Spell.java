@@ -2,6 +2,8 @@ package games;
 
 import java.util.ArrayList;
 
+import heroes.Hero;
+
 public abstract class Spell {
 
 	static ArrayList<Spell> spellList = new ArrayList<>();
@@ -14,7 +16,7 @@ public abstract class Spell {
 	public Spell() {
 		
 	} 
-	public abstract void castSpell(Enemy enemy);
+	public abstract void castSpell(Enemy enemy,Hero myHero);
 	public abstract String effect();
 	public void setSpell(Spell spell) {
 		Hero.heroSpell=spell;

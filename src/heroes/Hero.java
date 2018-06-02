@@ -1,8 +1,12 @@
-package games;
+package heroes;
 
 import java.text.DecimalFormat;
 
 import effects.LightBurn;
+import games.Enemy;
+import games.Outcome;
+import games.Spell;
+import games.SpellBook;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
@@ -10,18 +14,18 @@ import javafx.scene.image.Image;
 import screens.DungeonFrame;
 
 public abstract class Hero {
-	 static double currentHP;
-	 static double actualHP;
+	public static double currentHP;
+	public static double actualHP;
 	 public static double DMG;
-	 static double MP;
-	 static double startingMP;
-	 private static double experience=0;
+	 public static double MP;
+	 public static double startingMP;
+	 public static double experience=0;
 	 private static double expToLevel=100;
-	 private static int level =1;
+	 public static int level =1;
 
-	static Spell heroSpell;
+	public static Spell heroSpell;
 	 static Image playerImage;
-	 static double armour;
+	 public static double armour;
 	 DecimalFormat df2 = new DecimalFormat(".##");
 	 protected SpellBook addStartSpell = new SpellBook();
 	
@@ -61,29 +65,46 @@ public abstract class Hero {
 
 	public void setActualHP(double actualHP) {
 		Hero.actualHP = actualHP;
+		df2.format(Hero.actualHP);
 	}
 
 
 	public void setCurrentHP(double hP) {
 		currentHP = hP;
+		df2.format(Hero.currentHP);
+	}
+
+
+	public  double getMP() {
+	//	df2.format(Hero.MP);
+		return MP;
+	}
+
+	public  void setMP(double d) {
+		Hero.MP = d;
+		df2.format(Hero.MP);
+	}
+	 public double getStartingMP() {
+		// df2.format(Hero.startingMP);
+		return startingMP;
+	}
+
+
+	public  void setStartingMP(double startingMP) {
+		Hero.startingMP = startingMP;
+		df2.format(Hero.startingMP);
+	}
+	
+
+	public Spell getHeroSpell() {
+		return heroSpell;
 	}
 	public double getDMG() {
 		return DMG;
 	}
 	public void setDMG(double dMG) {
 		DMG = dMG;
-	}
-
-	public  double getMP() {
-		return MP;
-	}
-
-	public  void setMP(double d) {
-		MP = d;
-	}
-
-	public Spell getHeroSpell() {
-		return heroSpell;
+		df2.format(Hero.DMG);
 	}
 	 public Image getPlayerImage() {
 		return playerImage;
@@ -98,27 +119,20 @@ public abstract class Hero {
 
 	public void setArmour(double armour) {
 		Hero.armour = armour;
+		df2.format(Hero.armour);
 	}
 
 
 	public void setHeroSpell(Spell heroSpellIn) {
 		heroSpell = heroSpellIn;
 	}
-	 public double getStartingMP() {
-		return startingMP;
-	}
 
-
-	public  void setStartingMP(double startingMP) {
-		Hero.startingMP = startingMP;
-	}
-	
 	public void castSpell(DungeonFrame dungeonFrame,TextArea textArea, Hero myHero, Enemy enemy,Label hPLabel, Label mPLabel,Label enemyLabel,ProgressBar heroMPBar,ProgressBar enemyHPBar) {
 		if(myHero.getMP()>=(myHero.getHeroSpell().getManaCost())) {
 		Outcome outcomeCalculator = new Outcome();
 		
 			MP -= heroSpell.getManaCost();
-			heroSpell.castSpell(enemy);
+			heroSpell.castSpell(enemy,myHero);
 		   heroMPBar.setProgress(outcomeCalculator.calculateHeroMPBar(myHero));
 		   enemyHPBar.setProgress(outcomeCalculator.calculateEnemyHPBar(enemy));
 		   outcomeCalculator.spellUpdate(textArea, myHero, enemy, hPLabel, mPLabel, enemyLabel);

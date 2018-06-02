@@ -1,6 +1,9 @@
 package games;
 
 import heroes.Archer;
+import heroes.Hero;
+import heroes.HeroDescription;
+import heroes.HeroImageCreator;
 import heroes.Mage;
 import heroes.Warrior;
 import javafx.event.ActionEvent;

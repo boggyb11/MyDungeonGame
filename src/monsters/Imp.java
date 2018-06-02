@@ -4,6 +4,7 @@ package monsters;
 import java.util.Random;
 
 import games.*;
+import heroes.Hero;
 import javafx.scene.image.Image;
 
 public class Imp extends Enemy {

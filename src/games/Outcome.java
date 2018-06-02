@@ -2,6 +2,7 @@ package games;
 
 import java.text.DecimalFormat;
 
+import heroes.Hero;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import screens.*;
@@ -73,6 +74,7 @@ public class Outcome {
 			 double gainedExperience = enemy.getExperience();
 			 double exp = (myHero.getExperience() + gainedExperience);
 			 myHero.setExperience(exp);
+			 myHero.setExpToLevel(myHero.getExpToLevel()-gainedExperience);
 			 checkLevelUp(myHero,dungeonFrame);
 			 
 				if(lootDrop.getName() != "NULL")
@@ -97,7 +99,7 @@ public class Outcome {
 
 	}  
 	public void checkLevelUp(Hero myHero, DungeonFrame dungeonFrame) {
-		if(myHero.getExperience()>=myHero.getExpToLevel()) {
+		if(myHero.getExpToLevel()<=0) {
 			myHero.setLevel(myHero.getLevel()+1);
 			myHero.levelUp();
 			DungeonFrame.textArea.appendText("\n------------------------------");

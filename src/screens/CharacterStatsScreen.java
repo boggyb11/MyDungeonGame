@@ -3,6 +3,8 @@ package screens;
 import java.text.DecimalFormat;
 
 import games.*;
+import heroes.Hero;
+import heroes.HeroImageCreator;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,13 +18,13 @@ public class CharacterStatsScreen {
 	
 	//Label Name = new Label();
 	//Label herotype = new Label();
-	//private Label level = new Label();
-	private Label HP = new Label();
-	private Label MP = new Label();
-	private Label Arm = new Label();
-	private Label Dmg = new Label();
-	//private Label Exp = new Label();
-	//private Label ExpToLvl = new Label();
+	private Label level = new Label();
+	private Label hP = new Label();
+	private Label mP = new Label();
+	private Label arm = new Label();
+	private Label dmg = new Label();
+	private Label exp = new Label();
+	private Label expToLvl = new Label();
 	private Button continueButton;
 	
 	HeroImageCreator heroImage = new HeroImageCreator();
@@ -37,12 +39,13 @@ public class CharacterStatsScreen {
 	
 	public void showStatsScreen(Hero myHero) {
 		ImageView heroImageView = heroImage.setHeroImage(myHero.getPlayerImage());
-		
-		HP.setText("HP: "+df2.format(myHero.getCurrentHP())+"/"+myHero.getActualHP());
-		MP.setText("MP: "+myHero.getMP()+"/"+myHero.getStartingMP());
-		Arm.setText("Armour: "+myHero.getArmour());
-		Dmg.setText("Damage: "+myHero.getDMG());
-		
+		level.setText("Level: "+myHero.getLevel());
+		hP.setText("HP: "+df2.format(myHero.getCurrentHP())+"/"+myHero.getActualHP());
+		mP.setText("MP: "+df2.format(myHero.getMP())+"/"+df2.format(myHero.getStartingMP()));
+		arm.setText("Armour: "+myHero.getArmour());
+		dmg.setText("Damage: "+myHero.getDMG());
+		exp.setText("Experience: "+ myHero.getExperience());
+		expToLvl.setText("Experience to Level: "+myHero.getExpToLevel());
 		continueButton = new Button("Continue");
 		continueButton.setOnAction(e ->{
 			DungeonFrame hsb = new DungeonFrame();
@@ -51,7 +54,7 @@ public class CharacterStatsScreen {
 		});
 		
 		
-		stats.getChildren().addAll(HP,MP,Arm,Dmg);
+		stats.getChildren().addAll(level,hP,mP,arm,dmg,exp,expToLvl);
 		middle.getChildren().addAll(stats,heroImageView);
 		bottom.getChildren().add(continueButton);
 		all.getChildren().addAll(middle,bottom);

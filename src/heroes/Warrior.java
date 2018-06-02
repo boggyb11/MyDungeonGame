@@ -1,6 +1,5 @@
 package heroes;
 
-import games.Hero;
 import games.Spell;
 import javafx.scene.image.Image;
 import spells.Sunder;

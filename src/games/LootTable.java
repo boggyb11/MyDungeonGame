@@ -1,6 +1,7 @@
 package games;
 
-import screens.DungeonFrame;
+import heroes.*;
+import screens.*;
 
 public enum LootTable {
 //		  NAME,ARMOUR,DMG,HP,MP

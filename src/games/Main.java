@@ -12,11 +12,7 @@ public class Main {
 
 }
 
-/**
- * ellis wants full screen
- * high scores
- * 
-
+/** 
  * 
  * 
  * 

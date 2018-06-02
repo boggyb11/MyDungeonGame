@@ -1,7 +1,7 @@
 package spells;
 
 import games.*;
-
+import heroes.*;
 public class Frostbolt extends Spell {
 
 	public Frostbolt() {
@@ -13,7 +13,7 @@ public class Frostbolt extends Spell {
 	}
 
 	@Override
-	public void castSpell(Enemy enemy) {
+	public void castSpell(Enemy enemy,Hero myHero) {
 		enemy.setHP(enemy.getHP()- getSpellDmg());
 		
 	}

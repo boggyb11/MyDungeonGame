@@ -2,7 +2,7 @@ package spells;
 
 import games.*;
 import screens.DungeonFrame;
-
+import heroes.*;
 public class Sunder extends Spell {
 	DungeonFrame myDungeonFrame = new DungeonFrame();
 	
@@ -14,7 +14,7 @@ public class Sunder extends Spell {
 	}
 
 	@Override
-	public void castSpell(Enemy enemy) {
+	public void castSpell(Enemy enemy,Hero myHero) {
 		enemy.setHP(enemy.getHP()- (getSpellDmg()*(1.0d-(enemy.getArmour()/100.0d))));
 		enemy.setArmour(enemy.getArmour()-5);
 	}

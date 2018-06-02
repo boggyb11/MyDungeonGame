@@ -1,11 +1,11 @@
 package heroes;
 
+
 import games.*;
 import javafx.scene.image.Image;
 import spells.*;
 
 public class Archer extends Hero {
-
 	public Archer() {
 		
 		super.setCurrentHP(80);
@@ -37,18 +37,26 @@ public class Archer extends Hero {
 		case 2:{
 			Spell newSpell = new PowerShot();
 			addStartSpell.addItem(newSpell);
+			break;
 		}
 		case 4:{
-			
-		}
+			Spell newSpell = new Bandage();
+			addStartSpell.addItem(newSpell);
+			break;		}
 		case 6:{
-			
+			Spell newSpell = new MultiShot();
+			addStartSpell.addItem(newSpell);
+			break;
 		}
 		case 8:{
-			
+			Spell newSpell = new HeartSeeker();
+			addStartSpell.addItem(newSpell);
+			break;
 		}
 		case 10:{
-			
+			Spell newSpell = new Snipe();
+			addStartSpell.addItem(newSpell);
+			break;
 		}
 			
 			
@@ -58,16 +66,20 @@ public class Archer extends Hero {
 	
 	public void doStats() {
 		
-		super.setActualHP(super.getActualHP()*1.4);
+		super.setActualHP(super.getActualHP()*1.1);
 		super.setCurrentHP(super.getActualHP());
 		
-		super.setDMG(super.getDMG()*1.4);
+		super.setDMG(super.getDMG()*1.1);
 		
-		super.setStartingMP(super.getStartingMP()*1.4);
+		super.setStartingMP(super.getStartingMP()*1.1);
 		super.setMP(super.getStartingMP());
 		
-		super.setArmour(super.getArmour()*1.4);
+		super.setArmour(super.getArmour()*1.1);
+		
+		super.setExpToLevel(100+25*super.getLevel());
 		
 	}
+	
+
 	
 }

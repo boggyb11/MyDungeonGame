@@ -2,7 +2,7 @@ package spells;
 
 import games.Enemy;
 import games.Spell;
-
+import heroes.*;
 public class PowerShot extends Spell {
 	
 	public PowerShot() {
@@ -14,7 +14,7 @@ public class PowerShot extends Spell {
 	}
 
 	@Override
-	public void castSpell(Enemy enemy) {
+	public void castSpell(Enemy enemy,Hero myHero) {
 		// TODO Auto-generated method stub
 		enemy.setHP(enemy.getHP()- (getSpellDmg()));
 
