@@ -3,6 +3,7 @@ package games;
 import java.util.ArrayList;
 
 import heroes.Hero;
+import screens.DungeonFrame;
 
 public abstract class Spell {
 
@@ -16,7 +17,7 @@ public abstract class Spell {
 	public Spell() {
 		
 	} 
-	public abstract void castSpell(Enemy enemy,Hero myHero);
+	public abstract void castSpell(Enemy enemy,Hero myHero,DungeonFrame dungeon);
 	public abstract String effect();
 	public void setSpell(Spell spell) {
 		Hero.heroSpell=spell;

@@ -2,6 +2,7 @@ package spells;
 
 import games.*;
 import heroes.*;
+import screens.DungeonFrame;
 public class Snipe extends Spell{
 
 	
@@ -16,7 +17,7 @@ public class Snipe extends Spell{
 	}
 	
 	@Override
-	public void castSpell(Enemy enemy,Hero myHero) {
+	public void castSpell(Enemy enemy,Hero myHero, DungeonFrame dungeon) {
 		enemy.setHP(enemy.getHP()- getSpellDmg());
 		
 	}

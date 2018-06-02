@@ -3,6 +3,8 @@ package heroes;
 import java.text.DecimalFormat;
 
 import effects.LightBurn;
+import effects.SeriousBurn;
+import effects.Stun;
 import games.Enemy;
 import games.Outcome;
 import games.Spell;
@@ -35,12 +37,25 @@ public abstract class Hero {
 	
 	public abstract void levelUp();
 	
-	public void attack(Hero hero, Enemy enemy) {
-		calcHeroHp(enemy.attack(hero));
+	public void attack(Hero hero, Enemy enemy,DungeonFrame dungeon) {
+		
 		if(enemy.isBurning) {
 			LightBurn lb = new LightBurn();
-			lb.burn(enemy);
+			lb.burn(enemy, dungeon);
 		}
+		if(enemy.isSeriousBurning) {
+			SeriousBurn sb = new SeriousBurn();
+			sb.burn(enemy, dungeon);
+			
+		}
+		if(enemy.isStunned) {
+			enemy.setHP(calcEnemyHP(enemy.getHP()));
+			Stun stun = new Stun();
+			stun.stunCheck(enemy);
+			return;
+			
+		}
+		calcHeroHp(enemy.attack(hero));
 		enemy.setHP(calcEnemyHP(enemy.getHP()));
 	}
 	public void calcHeroHp(double heroHP) {
@@ -132,7 +147,7 @@ public abstract class Hero {
 		Outcome outcomeCalculator = new Outcome();
 		
 			MP -= heroSpell.getManaCost();
-			heroSpell.castSpell(enemy,myHero);
+			heroSpell.castSpell(enemy,myHero, dungeonFrame);
 		   heroMPBar.setProgress(outcomeCalculator.calculateHeroMPBar(myHero));
 		   enemyHPBar.setProgress(outcomeCalculator.calculateEnemyHPBar(enemy));
 		   outcomeCalculator.spellUpdate(textArea, myHero, enemy, hPLabel, mPLabel, enemyLabel);

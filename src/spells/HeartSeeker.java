@@ -5,6 +5,7 @@ import java.util.Random;
 import games.Enemy;
 import games.Spell;
 import heroes.*;
+import screens.DungeonFrame;
 
 public class HeartSeeker extends Spell {
 	
@@ -22,7 +23,7 @@ public class HeartSeeker extends Spell {
 	
 
 	@Override
-	public void castSpell(Enemy enemy, Hero myHero) {
+	public void castSpell(Enemy enemy, Hero myHero, DungeonFrame dungeon) {
 		
 		Random rand = new Random();
 		//may need checking

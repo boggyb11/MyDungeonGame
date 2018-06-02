@@ -6,20 +6,19 @@ import screens.DungeonFrame;
 
 public class LightBurn extends Effect {
 
-private static int burningCount = 2;//bad place for static not sure how else to do it
-DungeonFrame myDungeon = new DungeonFrame();
+private static int burningCount = 2;
 
 @Override
-	public void applyEffect(Enemy enemy) {
+	public void applyEffect(Enemy enemy,DungeonFrame dungeon) {
 	enemy.isBurning =true;
-	burn(enemy);
+	burn(enemy, dungeon);
 	}
 
-public void burn(Enemy enemy) {
+public void burn(Enemy enemy, DungeonFrame dungeon) {
 	if (enemy.isBurning) {
 		if(burningCount>=1)	{
-			DungeonFrame.enemy.setHP(DungeonFrame.enemy.getHP()-5);
-			myDungeon.getTextArea().appendText("\nEnemy burned for 5 Dmg!");
+			enemy.setHP(enemy.getHP()-5);
+			dungeon.getTextArea().appendText("\nEnemy burned for 5 Dmg!");
 			burningCount --;
 		}
 		else enemy.isBurning =false;

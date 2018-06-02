@@ -117,7 +117,7 @@ public class DungeonFrame {
 		
 		public void setAttackButton() {
 			  attack.setOnAction((event)->{
-					myHero.attack(myHero, enemy);
+					myHero.attack(myHero, enemy,this);
 					
 					heroHPBar.setProgress(outcomeCalculator.calculateHeroHPBar(myHero));
 					enemyHPBar.setProgress(outcomeCalculator.calculateEnemyHPBar(enemy));

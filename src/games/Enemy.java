@@ -15,6 +15,8 @@ public abstract class Enemy {
 	 public double armour;
 	 private Image enemyImage;
 	 public boolean isBurning = false;
+	 public boolean isStunned =false;
+	 public boolean isSeriousBurning = false;
 	 private double experience;
 	 
 

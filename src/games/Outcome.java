@@ -17,8 +17,8 @@ public class Outcome {
 	public void attackUpdate(TextArea textArea, Hero myHero, Enemy enemy,Label hPLabel,Label mPLabel, Label enemyLabel) {
 		
 		hPLabel.setText("HP: "+df2.format(myHero.getCurrentHP()));
-		mPLabel.setText("MP : "+myHero.getMP());
-		enemyLabel.setText("Enemy HP: "+enemy.getHP());
+		mPLabel.setText("MP : "+df2.format(myHero.getMP()));
+		enemyLabel.setText("Enemy HP: "+df2.format(enemy.getHP()));
 		String outcomes =("\nYou received "+ df2.format(enemy.getDMG()*(1.0d-(myHero.getArmour()/100.0d)))+" Damage from the "+"Enemy"+"!!"+"\nYou Attack for "+ myHero.getDMG()+" Enemy has "+" : "+df2.format(enemy.getHP())+" HP remaining!!\n");
 		textArea.appendText(outcomes);
 		
@@ -28,8 +28,8 @@ public class Outcome {
 		String outcomes =("\nEnemy has : "+ df2.format(enemy.getHP())+" HP remaining!!\n");
 		textArea.appendText(outcomes);
 		hPLabel.setText("HP: "+df2.format(myHero.getCurrentHP()));
-		mPLabel.setText("MP : "+myHero.getMP());
-		enemyLabel.setText("Enemy HP: "+enemy.getHP());
+		mPLabel.setText("MP : "+df2.format(myHero.getMP()));
+		enemyLabel.setText("Enemy HP: "+df2.format(enemy.getHP()));
 	}
 	
 	public double calculateHeroHPBar(Hero myHero) {
