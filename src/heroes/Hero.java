@@ -24,6 +24,7 @@ public abstract class Hero {
 	 public static double experience=0;
 	 private static double expToLevel=100;
 	 public static int level =1;
+	 private String type;
 
 	public static Spell heroSpell;
 	 static Image playerImage;
@@ -188,6 +189,14 @@ public abstract class Hero {
 
 	public void setLevel(int level) {
 		Hero.level = level;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

@@ -8,7 +8,7 @@ public class Warrior extends Hero {
 
 	
 	public Warrior() {
-		
+		super.setType("Warrior");
     	super.setCurrentHP(100);
     	super.setActualHP(100);
     	super.setDMG(15);

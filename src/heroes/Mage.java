@@ -10,7 +10,7 @@ public class Mage extends Hero {
 	public Mage() {
 		
 		
-		
+		super.setType("Mage");
     	super.setCurrentHP(60);
     	super.setActualHP(60);
     	super.setDMG(10);

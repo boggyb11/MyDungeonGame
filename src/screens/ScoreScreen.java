@@ -1,5 +1,11 @@
 package screens;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
+
 import games.Backpack;
 import games.CharacterCreator;
 import games.Frame;
@@ -15,6 +21,10 @@ public class ScoreScreen {
 	Label enemiesKilled;
 	VBox vbox = new VBox(8);
 	Button playAgain;
+	
+	public static final File f = new File("Assets/HighScores.txt");
+	
+	
 	public void setScoreScreen(DungeonFrame dungeonFrame){
 		playAgain = new Button("Play Again");
 		playAgain.setOnAction(e ->{
@@ -31,11 +41,17 @@ public class ScoreScreen {
     		cc.characterSelect();
     		
     		
-    		
+    		Date date = new Date();
+    		String scoreDate = date.toString();
+    		//creating the line to be written to the high scores file
+    		//Format:
+    		// Class:____;Score:____;Date:____;
+    		String score = "Class: "+dungeonFrame.myHero.getType()+" Score: "+DungeonFrame.monstersKilled+" Date: "+scoreDate;
+    		storeHighScore(score);	
+    		System.out.println(score);
     		
 		});
-		
-		
+
 		   enemiesKilled = new Label("\nCongratulations you have killed : "+DungeonFrame.monstersKilled+" Enemies !!!!!!!");
 		   vbox.getChildren().addAll(enemiesKilled,playAgain);
 			Frame.setScene4(new Scene(vbox,600,800));
@@ -43,6 +59,45 @@ public class ScoreScreen {
 	    	
 	    	
 	    
+	}
+	
+	public void storeHighScore(String score) {
+		
+		FileWriter fw = null;
+		BufferedWriter bw = null;
+		
+		try {
+			
+			fw = new FileWriter(f);
+			bw= new BufferedWriter(fw);
+			
+			fw.write(score);
+			bw.write(score);
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		finally {
+				try {
+					//fw.close();
+					bw.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			
+		}
+		
+		
+		
+		//write high score to file
+		//read high scores
+		//sort them by highest value
+		//write the top 5
+		
+		
+		
 	}
 	
 	

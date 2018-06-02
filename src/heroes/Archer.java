@@ -7,7 +7,7 @@ import spells.*;
 
 public class Archer extends Hero {
 	public Archer() {
-		
+		super.setType("Archer");
 		super.setCurrentHP(80);
 		super.setActualHP(80);
 		super.setDMG(20);
