@@ -15,6 +15,7 @@ public class Frame extends Application {
 	private static Scene scene2;
 	private static Scene scene3;
 	private static Scene scene4;
+	private static Scene highScoresScene;
 	static Scene scene5;
 	private static Scene welcomeScene;
 	static Scene spellBookScene;
@@ -68,6 +69,12 @@ public class Frame extends Application {
 	}
 	public static void setWelcomeScene(Scene welcomeScene) {
 		Frame.welcomeScene = welcomeScene;
+	}
+	public static Scene getHighScoresScene() {
+		return highScoresScene;
+	}
+	public static void setHighScoresScene(Scene highScoresScene) {
+		Frame.highScoresScene = highScoresScene;
 	}
 
 	

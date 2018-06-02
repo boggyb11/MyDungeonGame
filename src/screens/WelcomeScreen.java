@@ -1,7 +1,6 @@
 package screens;
 
-import games.CharacterCreator;
-import games.Frame;
+import games.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -33,6 +32,17 @@ public class WelcomeScreen {
 		    @Override public void handle(ActionEvent e) {
 		    	CharacterCreator cc = new CharacterCreator();
 		    	cc.characterSelect();
+		    
+		    }
+		});
+		
+		highScores.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		    	//HighScores scores = new HighScores();
+		    	//scores.readHighScores();
+		    	//show high scores screen
+		    	HighScoresScreen hss = new HighScoresScreen();
+		    	hss.showHighScores();
 		    
 		    }
 		});
