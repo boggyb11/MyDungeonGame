@@ -10,7 +10,7 @@ import javafx.scene.control.TextArea;
 
 public class HighScores {
 	
-	private static final String filename = "Assets/HighScores.txt.txt";
+	private static final String filename = "Assets/HighScores.txt";
 	
 	
 	
@@ -48,11 +48,5 @@ public class HighScores {
 	
 
 }
-/*
- * When you finish a run, store the score in a text document
- * when you click high scores, show the high scores
- * 
- * 
- * 
- */
+
 

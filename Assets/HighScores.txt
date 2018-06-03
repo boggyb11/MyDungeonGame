@@ -1,1 +1,6 @@
-Class: Mage Score: 0 Date: Sat Jun 02 15:06:02 BST 2018Class: Mage Score: 0 Date: Sat Jun 02 15:06:02 BST 2018
+Class: Mage, Score: -1-, Date: Sun Jun 03 15:06:07 BST 2018
+Class: Mage, Score: -1-, Date: Sun Jun 03 15:06:16 BST 2018
+Class: Mage, Score: -1-, Date: Sun Jun 03 15:07:09 BST 2018
+Class: Warrior, Score: -3-, Date: Sun Jun 03 15:25:39 BST 2018
+Class: Warrior, Score: -6-, Date: Sun Jun 03 15:06:30 BST 2018
+Class: Archer, Score: -8-, Date: Sun Jun 03 15:06:52 BST 2018
